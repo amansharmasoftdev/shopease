@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { Comment } from "../../node_modules/@types/estree/index.d";
 
 const Header: React.FC = () => {
   return (
@@ -19,6 +20,9 @@ const Header: React.FC = () => {
           </Link>
           <Link to="/add-product" className="nav-link">
             Add Product
+          </Link>
+          <Link to="/post-comments" className="nav-link">
+            Post Comment
           </Link>
         </nav>
       </div>

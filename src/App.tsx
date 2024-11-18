@@ -5,6 +5,7 @@ import Header from "./component/Header";
 import ProductsPage from "./pages/ProductsPage";
 import JewelryPage from "./pages/JewelryPage";
 import AddProductPage from "./pages/AddProductPage";
+import PostPage from "./pages/PostPage";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/jewelry" element={<JewelryPage />} />
           <Route path="/add-product" element={<AddProductPage />} />
+          <Route path="/post-comments" element={<PostPage />} />
         </Routes>
       </div>
     </Router>
