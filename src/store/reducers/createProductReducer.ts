@@ -17,7 +17,7 @@ const createProductReducer = (
   state = initialState,
   action: any
 ): createProductState => {
-  console.log(action, "==action");
+  console.log(action, "==action in reducer for products");
 
   switch (action.type) {
     case CreateProductActionTypes.CREATE_PRODUCT_REQUEST:

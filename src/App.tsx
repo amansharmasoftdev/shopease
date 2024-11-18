@@ -6,11 +6,14 @@ import ProductsPage from "./pages/ProductsPage";
 import JewelryPage from "./pages/JewelryPage";
 import AddProductPage from "./pages/AddProductPage";
 import PostPage from "./pages/PostPage";
+import GlobalLoader from "./component/Loader";
 
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
+        <GlobalLoader />
+
         <Header />
         <Routes>
           <Route path="/products" element={<ProductsPage />} />

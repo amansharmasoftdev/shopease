@@ -4,6 +4,8 @@ import { productReducer } from "./reducers/getProductReducer";
 import getJewReducer from "./reducers/getJewReducer";
 import rootSaga from "./rootSaga";
 import createProductReducer from "./reducers/createProductReducer";
+import CommentReducer from "./reducers/commentReducer";
+import loaderReducer from "./reducers/common/loaderReducer";
 
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
   products: productReducer,
   getJew: getJewReducer,
   createdProducts: createProductReducer,
+  comments: CommentReducer,
+  loader: loaderReducer,
 });
 
 // Configure the store with saga middleware

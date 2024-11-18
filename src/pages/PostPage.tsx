@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./PostPage.css";
+import { useDispatch, useSelector } from "react-redux";
+import { commentTypes } from "../store/types/commentType";
+import { RootState } from "../store/store";
 
 const PostPage: React.FC = () => {
+  const [selectedPostId, setSelectedPostId] = useState<number>(1);
+  const dispatch = useDispatch();
+
+  const { loading, error, comments } = useSelector(
+    (state: RootState) => state.comments
+  );
+
+  const handlePostSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const postId = parseInt(event.target.value, 10);
+    setSelectedPostId(postId);
+
+    dispatch({
+      type: commentTypes.FETCH_COMMENTS_REQUEST,
+      payload: postId,
+    });
+  };
+  useEffect(() => {
+    dispatch({
+      type: commentTypes.FETCH_COMMENTS_REQUEST,
+      payload: 1,
+    });
+  }, [dispatch]);
   return (
     <div className="post-page">
       <h1 className="page-title">Post Comments</h1>
@@ -11,7 +36,12 @@ const PostPage: React.FC = () => {
         <label htmlFor="post-dropdown" className="dropdown-label">
           Select Post ID:
         </label>
-        <select id="post-dropdown" className="dropdown">
+        <select
+          id="post-dropdown"
+          className="dropdown"
+          value={selectedPostId}
+          onChange={handlePostSelection}
+        >
           {Array.from({ length: 10 }, (_, i) => i + 1).map((id) => (
             <option key={id} value={id}>
               Post {id}
@@ -23,25 +53,23 @@ const PostPage: React.FC = () => {
       {/* Comments Section */}
       <div className="comments-section">
         <h2 className="comments-title">Comments</h2>
-        <div className="comments-container">
-          {/* Replace this placeholder with dynamic content */}
-          <div className="comment-card">
-            <h3 className="comment-name">Name: John Doe</h3>
-            <p className="comment-email">Email: johndoe@example.com</p>
-            <p className="comment-body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              vehicula metus ut dui ultrices, at efficitur felis aliquam.
-            </p>
+        {loading ? (
+          <p>Loading comments...</p>
+        ) : error ? (
+          <p className="error-message">Error: {error}</p>
+        ) : comments && comments.length > 0 ? (
+          <div className="comments-container">
+            {comments.map((comment) => (
+              <div key={comment.id} className="comment-card">
+                <h3 className="comment-name">Name: {comment.name}</h3>
+                <p className="comment-email">Email: {comment.email}</p>
+                <p className="comment-body">{comment.body}</p>
+              </div>
+            ))}
           </div>
-          <div className="comment-card">
-            <h3 className="comment-name">Name: Jane Doe</h3>
-            <p className="comment-email">Email: janedoe@example.com</p>
-            <p className="comment-body">
-              Quisque non augue mollis, congue justo ac, dapibus nisi. Morbi
-              faucibus tortor et urna vestibulum, et tincidunt justo sodales.
-            </p>
-          </div>
-        </div>
+        ) : (
+          <p>No comments found for this post.</p>
+        )}
       </div>
     </div>
   );
