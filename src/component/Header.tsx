@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import {
@@ -8,14 +8,26 @@ import {
   FaGem,
   FaPlusCircle,
   FaComment,
+  FaSignOutAlt,
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
+import { LOGOUT } from "../store/actions/common";
 
 const Header: React.FC = () => {
-  const { cartItems, loading, error } = useSelector(
-    (state: RootState) => state.cart
-  );
+  const { cartItems } = useSelector((state: RootState) => state.cart);
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch({ type: LOGOUT });
+    setShowLogoutPopup((prev) => !prev);
+  };
+
+  const toggleLogoutPopup = () => {
+    setShowLogoutPopup((prev) => !prev);
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -59,6 +71,24 @@ const Header: React.FC = () => {
             )}
           </Link>
         </div>
+
+        {/* Logout Icon */}
+        <div className="cart">
+          <FaSignOutAlt size={24} onClick={toggleLogoutPopup} />
+        </div>
+
+        {/* Logout Confirmation Popup */}
+        {showLogoutPopup && (
+          <div className="logout-popup">
+            <div className="popup-content">
+              <h3>Are you sure you want to log out?</h3>
+              <div className="popup-actions">
+                <button onClick={handleLogout}>Yes, Log Out</button>
+                <button onClick={toggleLogoutPopup}>Cancel</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

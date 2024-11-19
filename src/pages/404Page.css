@@ -1,0 +1,50 @@
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f3f3;
+  text-align: center;
+}
+
+.not-found-container {
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.not-found-title {
+  font-size: 72px;
+  color: #ff9900; /* Amazon's orange color */
+  margin-bottom: 16px;
+}
+
+.not-found-subtitle {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.not-found-text {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.not-found-link {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #0073bb; /* Amazon-like blue */
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.not-found-link:hover {
+  background-color: #005999;
+}

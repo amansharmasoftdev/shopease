@@ -13,6 +13,9 @@ const Home: React.FC = () => {
   const { cartItems, loading: cartLoading } = useSelector(
     (state: RootState) => state.cart
   );
+  const isAuthenticated = useSelector((state: RootState) => state.auth);
+  console.log(isAuthenticated, "==isAuthenticated on home page");
+
   console.log(cartLoading, "==cartLoading");
   //   const cart = useSelector((state: RootState) => state.products);
 
