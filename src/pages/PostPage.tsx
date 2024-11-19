@@ -11,7 +11,15 @@ const PostPage: React.FC = () => {
   const { loading, error, comments } = useSelector(
     (state: RootState) => state.comments
   );
-
+  const clickBtn = () => {
+    // dispatch(
+    //   removeFromCart({
+    //     id: 1,
+    //     title: "Product 1",
+    //     price: 99.99,
+    //   })
+    // );
+  };
   const handlePostSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const postId = parseInt(event.target.value, 10);
     setSelectedPostId(postId);
@@ -30,7 +38,7 @@ const PostPage: React.FC = () => {
   return (
     <div className="post-page">
       <h1 className="page-title">Post Comments</h1>
-
+      <button onClick={clickBtn}>Click</button>
       {/* Dropdown to choose postId */}
       <div className="dropdown-container">
         <label htmlFor="post-dropdown" className="dropdown-label">
@@ -59,13 +67,13 @@ const PostPage: React.FC = () => {
           <p className="error-message">Error: {error}</p>
         ) : comments && comments.length > 0 ? (
           <div className="comments-container">
-            {comments.map((comment) => (
+            {/* {comments.map((comment) => (
               <div key={comment.id} className="comment-card">
                 <h3 className="comment-name">Name: {comment.name}</h3>
                 <p className="comment-email">Email: {comment.email}</p>
                 <p className="comment-body">{comment.body}</p>
               </div>
-            ))}
+            ))} */}
           </div>
         ) : (
           <p>No comments found for this post.</p>
