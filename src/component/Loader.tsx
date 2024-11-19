@@ -1,8 +1,8 @@
-// GlobalLoader.tsx
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import CircularProgress from "@mui/material/CircularProgress";
+import Player from "lottie-react"; // Default import
+import loadingAnimation from "../assets/Animation - 1732012299691.json";
 
 const GlobalLoader: React.FC = () => {
   const { loading } = useSelector((state: RootState) => state.loader);
@@ -24,7 +24,12 @@ const GlobalLoader: React.FC = () => {
         zIndex: 9999,
       }}
     >
-      <CircularProgress color="inherit" />
+      <Player
+        autoplay
+        loop
+        animationData={loadingAnimation} // Use the imported JSON object
+        style={{ height: "150px", width: "150px" }}
+      />
     </div>
   );
 };

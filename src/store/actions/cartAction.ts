@@ -7,7 +7,7 @@ const addToCart = (product: Product[]) => {
   };
 };
 
-const removeFromCart = (product: Product[]) => {
+const removeFromCart = (product: Product) => {
   return {
     type: cartTypes.REMOVE_FROM_CART,
     payload: product,

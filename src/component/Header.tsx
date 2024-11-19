@@ -9,10 +9,13 @@ import {
   FaPlusCircle,
   FaComment,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const Header: React.FC = () => {
-  const cartItemCount = 0; // Replace with dynamic data from state or context
-
+  const { cartItems, loading, error } = useSelector(
+    (state: RootState) => state.cart
+  );
   return (
     <header className="header">
       <div className="header-container">
@@ -51,8 +54,8 @@ const Header: React.FC = () => {
         <div className="cart">
           <Link to="/cart" className="cart-link">
             <FaShoppingCart size={24} />
-            {cartItemCount > 0 && (
-              <span className="cart-count">{cartItemCount}</span>
+            {cartItems?.length && (
+              <span className="cart-count">{cartItems?.length}</span>
             )}
           </Link>
         </div>
