@@ -4,16 +4,16 @@ import "./App.css";
 import Header from "./component/Header";
 import PostPage from "./pages/PostPage";
 import GlobalLoader from "./component/Loader";
+import Home from "./pages/Home";
 
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <GlobalLoader />
-
         <Header />
+        <GlobalLoader />
         <Routes>
-          <Route path="/home" element={<PostPage />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
     </Router>

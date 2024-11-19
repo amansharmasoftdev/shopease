@@ -3,12 +3,14 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
 import CommentReducer from "./reducers/commentReducer";
 import loaderReducer from "./reducers/common/loaderReducer";
+import getProductReducer from "./reducers/productsReducer";
 
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
 // Combine reducers
 const rootReducer = combineReducers({
+  products: getProductReducer,
   comments: CommentReducer,
   loader: loaderReducer,
 });
